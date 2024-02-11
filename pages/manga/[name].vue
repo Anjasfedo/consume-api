@@ -1,15 +1,20 @@
 <script lang="ts" setup>
 const route = useRoute()
 
-const { data: lists, pending } = await useAsyncData(
+console.log(route.params.name);
+
+const { data: lists, pending, refresh } = await useAsyncData(
   "lists",
-  () => $fetch(`api/info?page=${$route.params.name}`)
+  () => $fetch(`/api/info?endpoint=manga/${route.params.name}`)
 );
 
 </script>
 
 <template>
-{{ $route.params.name }}
+  <div v-if="pending">Loading</div>
+
+<div v-else>{{ lists }}</div>
+<button @click="refresh">refresh</button>
 </template>
 
 <style scoped>

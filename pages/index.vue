@@ -1,16 +1,9 @@
 <script lang="ts" setup>
-const currentPage = ref(null);
-
-onMounted(() => {
-  currentPage.value = 1
-})
+const currentPage = ref(1);
 
 const { data: lists, pending } = await useLazyAsyncData(
   "lists",
-  () => $fetch(`api/lists?page=${currentPage.value}`),
-  {
-    watch: [currentPage]
-  }
+  () => $fetch(`/api/lists?page=${currentPage.value}`)
 );
 </script>
 
