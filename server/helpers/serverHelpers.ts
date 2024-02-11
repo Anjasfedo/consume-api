@@ -1,3 +1,17 @@
+type DataT = {
+  title: string;
+  image: string;
+  desc: string;
+  type: string;
+  endpoint: string;
+};
+
+export type ListT = {
+  data: DataT[];
+};
+
+export const PAGESIZE = 20;
+
 export const getDataByPage = (
   data: DataT[],
   page: number | QueryValue | QueryValue[],
@@ -12,19 +26,5 @@ export const getDataByPage = (
   return newData;
 };
 
-export const getTotalPage = (data: DataT[], pageSize: number): number =>
-  Math.ceil(data.length / pageSize);
+export const getTotalPage = (data: DataT[], pageSize: number): number => Math.ceil(data.length / pageSize);
 
-export const PAGESIZE = 20;
-
-type DataT = {
-  title: string;
-  image: string;
-  desc: string;
-  type: string;
-  endpoint: string;
-};
-
-export type ListT = {
-  data: DataT[];
-};

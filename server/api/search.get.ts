@@ -11,11 +11,11 @@ export default defineEventHandler(async (event) => {
 
     const encodedName = encodeURIComponent(name);
 
-    const lists = await $fetch(
+    const searchs = await $fetch(
       `https://komiku-api.fly.dev/api/comic/search/${encodedName}`
     );
 
-    const result = lists.data;
+    const result = searchs.data;
 
     return { result };
   } catch (error) {

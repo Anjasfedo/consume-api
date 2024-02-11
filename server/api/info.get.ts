@@ -1,12 +1,12 @@
 
 export default defineEventHandler(async (event) => {
-  const { endpoint } = getQuery(event);
+  const { info } = getQuery(event);
 
-  const lists = await $fetch(
-    `https://komiku-api.fly.dev/api/comic/info/${endpoint}`
+  const infos = await $fetch(
+    `https://komiku-api.fly.dev/api/comic/info/${info}`
   );
 
-  const result = lists.data
+  const result = infos.data
 
   return { result };
 });
