@@ -1,6 +1,26 @@
-export default defineEventHandler( async (event) => {
+import {
+  getDataByPage,
+  getTotalPage,
+  PAGESIZE,
+} from "../helpers/serverHelpers";
 
-  const repo = await $fetch('https://komiku-api.fly.dev/api/comic/list')
+export default defineEventHandler(async (event) => {
+  const { page, filter } = getQuery(event);
 
-  return repo
-})
+  // https://komiku-api.fly.dev/api/comic/list
+  // https://komiku-api.fly.dev/api/comic/list?filter=manga
+  // https://komiku-api.fly.dev/api/comic/list?filter=manhwa
+  // https://komiku-api.fly.dev/api/comic/list?filter=manhua
+
+  const lists: any = await $fetch(
+    `https://komiku-api.fly.dev/api/comic/list?filter=${filter}`
+  );
+
+  const pageSize = PAGESIZE;
+
+  const totalPages = getTotalPage(lists.data, pageSize);
+
+  const result = getDataByPage(lists.data, page || 1, pageSize);
+
+  return { result, totalPages };
+});
