@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 const current = ref(1);
 
-const { data: lists } = useAsyncData("lists", () =>
-  $fetch("/api/lists")
-);
-
+// const { data: lists } = useAsyncData("lists", () =>
+//   $fetch("https://komiku-api.fly.dev/api/comic/list")
+// );
 </script>
 
 <template>

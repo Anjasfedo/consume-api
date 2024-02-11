@@ -1,6 +1,16 @@
-export default defineEventHandler( async (event) => {
+import { getDataByPage, getTotalPage } from "../helpers/serverHelpers";
 
-  const repo = await $fetch('https://komiku-api.fly.dev/api/comic/list')
+export default defineEventHandler(async (event) => {
 
-  return repo
-})
+  const { page } = getQuery(event);
+
+  const lists = await $fetch("https://komiku-api.fly.dev/api/comic/list");
+
+  const pageSize = 10;
+
+  const result = getDataByPage(lists.data, page, pageSize);
+
+  const totalPages = getTotalPage(lists.data, pageSize)
+
+  return { result, totalPages };
+});
