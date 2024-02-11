@@ -3,7 +3,7 @@ import { PAGESIZE } from "../helpers/serverHelpers";
 export default defineEventHandler(async (event) => {
   const { page } = getQuery(event);
 
-  const lists = await $fetch(
+  const recomends = await $fetch(
     `https://komiku-api.fly.dev/api/comic/recommended/page/${page || 1}`
   );
 
@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
 
   const totalPages = 20;
 
-  const result = lists.data
+  const result = recomends.data
 
   return { result, totalPages };
 });

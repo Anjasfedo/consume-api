@@ -15,7 +15,7 @@ const { data: lists, pending } = await useLazyAsyncData(
         v-for="data in lists?.result"
         class="my-card p-1 bg-slate-800 m-4"
       >
-        <q-img :src="data.image"> </q-img>
+        <q-img :src="data.image" />
         <q-btn flat class="font-semibold w-full"
           ><NuxtLink :to="data.endpoint">{{ data.title }}</NuxtLink></q-btn
         >
