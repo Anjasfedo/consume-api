@@ -18,9 +18,9 @@ export default defineEventHandler(async (event) => {
 
   const pageSize = PAGESIZE;
 
-  const result = getDataByPage(lists.data, page || 1, pageSize);
-
   const totalPages = getTotalPage(lists.data, pageSize);
+
+  const result = getDataByPage(lists.data, page || 1, pageSize);
 
   return { result, totalPages };
 });

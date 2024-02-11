@@ -11,5 +11,7 @@ export default defineEventHandler(async (event) => {
 
   const totalPages = 20;
 
-  return { lists, totalPages };
+  const result = lists.data
+
+  return { result, totalPages };
 });
